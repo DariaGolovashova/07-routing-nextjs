@@ -3,7 +3,7 @@ function NotesLayout({
   sidebar,
 }: {
   children: React.ReactNode;
-  sidebar: React.ReactNode;
+  sidebar?: React.ReactNode;
 }) {
   return (
     <div style={{ display: "flex", gap: "20px" }}>
