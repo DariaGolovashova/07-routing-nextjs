@@ -10,7 +10,7 @@ import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
 import type { NoteFormValues } from "@/components/NoteForm/NoteForm";
 
-function NotesClient() {
+function NotesClient({ tag }: { tag?: string }) {
   const [search, setSearch] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -28,10 +28,12 @@ function NotesClient() {
   };
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["notes", debouncedSearch, page],
+    // queryKey: ["notes", debouncedSearch, page],
+    queryKey: ["notes", tag, debouncedSearch, page],
     queryFn: () =>
       fetchNotes({
-        search: debouncedSearch,
+        search: tag && tag !== "all" ? tag : debouncedSearch,
+        // search: debouncedSearch,
         page,
         perPage: 10,
       } as FetchNotesParams),
