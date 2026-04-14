@@ -15,6 +15,7 @@ function NotePreviewClient({ id }: Props) {
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
     enabled: !!id,
+    refetchOnMount: false,
   });
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading note</p>;
@@ -29,7 +30,7 @@ function NotePreviewClient({ id }: Props) {
 
         <button onClick={() => router.back()}>Close</button>
       </div>
-      // <NotePreview />
+      {/* // <NotePreview /> */}
     </Modal>
   );
 }
