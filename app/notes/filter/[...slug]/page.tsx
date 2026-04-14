@@ -8,14 +8,14 @@ import NotesClient from "./Notes.client";
 // import type { Note } from "@/types/note";
 
 interface PropsNotePage {
-  params: {
+  params: Promise<{
     slug: string[];
-  };
+  }>;
 }
 
 async function NotePage({ params }: PropsNotePage) {
-  // const { slug } = await params;
-  const tag = params.slug?.[0];
+  const { slug } = await params;
+  const tag = slug?.[0];
   const queryClient = new QueryClient();
   // const filters = tag && tag !== "all" ? { search: tag } : {};
 

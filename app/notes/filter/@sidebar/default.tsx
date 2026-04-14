@@ -1,7 +1,7 @@
 import Link from "next/link";
 import css from "@/components/SidebarNotes/SidebarNotes.module.css";
 
-const tags = ["All notes", "Todo", "Work", "Personal", "Meeting", "Shopping"];
+const tags = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
 
 function DefaultSidebar() {
   return (
@@ -14,7 +14,10 @@ function DefaultSidebar() {
 
       {tags.map((tag) => (
         <li key={tag} className={css.menuItem}>
-          <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
+          <Link
+            href={`/notes/filter/${tag.toLocaleLowerCase()}`}
+            className={css.menuLink}
+          >
             {tag}
           </Link>
         </li>

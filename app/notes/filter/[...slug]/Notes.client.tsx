@@ -32,8 +32,8 @@ function NotesClient({ tag }: { tag?: string }) {
     queryKey: ["notes", tag, debouncedSearch, page],
     queryFn: () =>
       fetchNotes({
-        search: tag && tag !== "all" ? tag : debouncedSearch,
-        // search: debouncedSearch,
+        search: debouncedSearch,
+        tag: tag && tag !== "all" ? tag : undefined,
         page,
         perPage: 10,
       } as FetchNotesParams),
